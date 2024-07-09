@@ -61,10 +61,11 @@ local vim_illuminate = {
 	on_setup_start = nil,
 	---@param self vim-illuminate
 	setup = function(self)
-		local log = require("qvim.log")
+		local log = require("qvim.log").qvim
 		local ok, vim_illuminate = pcall(require, self.main)
+    local fmt = string.fmt
 		if not ok then
-			log:warn("The plugin '%s' could not be loaded.", self.name)
+			log.warn(fmt("The plugin '%s' could not be loaded.", self.name)
 			return
 		end
 		vim_illuminate.configure(self.options)

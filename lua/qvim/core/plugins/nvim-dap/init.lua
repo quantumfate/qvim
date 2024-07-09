@@ -1,4 +1,5 @@
-local log = require("qvim.log")
+local log = require("qvim.log").dap
+local fmt = string.format
 
 ---@generic T
 ---@class nvim-dap : core_meta_parent
@@ -97,10 +98,10 @@ local nvim_dap = {
 		local nvim_mason_dap = self.conf_extensions["mason_nvim_dap"]
 		local mason_ok, mason = pcall(require, nvim_mason_dap.main)
 		if not mason_ok then
-			log:warn(
-				"Failed to setup '%s' for '%s'.",
+			log.warn(
+				fmt("Failed to setup '%s' for '%s'.",
 				nvim_mason_dap.name,
-				self.name
+				self.name)
 			)
 		end
 
@@ -108,7 +109,7 @@ local nvim_dap = {
 
 		local ok, dap = pcall(require, self.main)
 		if not ok then
-			log:warn("Failed to run setup call for '%s'.", self.name)
+			log.warn(fmt("Failed to run setup call for '%s'.", self.name))
 			return
 		end
 		if qvim.config.use_icons then

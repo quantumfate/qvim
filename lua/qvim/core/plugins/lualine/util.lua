@@ -1,6 +1,6 @@
 local lualine_util = {}
 
-local log = require("qvim.log")
+local log = require("qvim.log").qvim
 local fmt = string.format
 
 ---@return colors
@@ -97,7 +97,7 @@ function lualine_util.get_registered_methods(method, sep)
 			)
 		end
 	else
-		log:error(fmt("[lualine] Invalid method '%s'", method))
+		log.error(fmt("[lualine] Invalid method '%s'", method))
 		return nil
 	end
 end

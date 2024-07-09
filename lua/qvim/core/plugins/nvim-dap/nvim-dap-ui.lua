@@ -1,4 +1,4 @@
-local log = require("qvim.log")
+local log = require("qvim.log").qvim
 
 ---@class nvim-dap-ui : nvim-dap
 ---@field enabled boolean|fun():boolean|nil
@@ -89,7 +89,7 @@ local nvim_dap_ui = {
 	setup_ext = function(self)
 		local status_ok, ui = pcall(require, self.main)
 		if not status_ok then
-			log:warn(
+			log.warn(
 				string.format("The extension '%s' could not be loaded.", ui)
 			)
 			return
@@ -149,7 +149,7 @@ local nvim_dap_ui = {
 			require(self.main .. ".util").notify = notify_handler
 		end, debug.traceback)
 		if not dapui_ok then
-			log:debug("Unable to override dap-ui logging level")
+			log.debug("Unable to override dap-ui logging level")
 		end
 
 		if self.on_setup_done then
